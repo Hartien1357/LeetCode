@@ -51,4 +51,23 @@ public class LeetCode1_10
         carry = total / 10;
         return new ListNode(total % 10, AddTwoNumbers(l1?.next, l2?.next, carry));
     }
+
+    /* Given a string s, find the length of the longest substring without repeating characters. */
+    public int LengthOfLongestSubstring(string s) {
+        HashSet<char> chars = new HashSet<char>();
+        int left = 0, right = 0, maxLen = 0;
+        while (right < s.Length)
+        {
+            if (!chars.Contains(s[right]))
+            {
+                chars.Add(s[right]);
+                right++;
+                maxLen = Math.Max(maxLen, chars.Count);
+            }else
+            {
+                chars.Remove(s[left++]);
+            }
+        }
+        return maxLen;
+    }
 }
